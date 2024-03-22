@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://buwqhfxbaqwn6"]
+
+[ext_resource type="Script" path="res://scenes/world.gd" id="1_5htgd"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5bs84"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_wrqk3"]
+sky_material = SubResource("ProceduralSkyMaterial_5bs84")
+
+[sub_resource type="Environment" id="Environment_p3oxg"]
+background_mode = 2
+sky = SubResource("Sky_wrqk3")
+tonemap_mode = 2
+
+[node name="world" type="Node3D"]
+script = ExtResource("1_5htgd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.534352, -0.844581, 0.0339219, 0, 0.0401318, 0.999194, -0.845262, 0.533922, -0.0214445, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_p3oxg")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="spawnPointFruit" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.767, -6)
+
+[node name="spawnTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="spawnTimer" to="." method="_on_spawn_timer_timeout"]
