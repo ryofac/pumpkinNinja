@@ -1,0 +1,25 @@
+[gd_scene load_steps=7 format=3 uid="uid://c8xbps7ngt3yd"]
+
+[ext_resource type="Texture2D" uid="uid://o4fhlh721ljy" path="res://Assets/Textures/dark_wooden_planks_1k.blend/textures/dark_wooden_planks_diff_1k.jpg" id="1_34cvx"]
+[ext_resource type="Texture2D" uid="uid://brdgpmfc4j585" path="res://Assets/Textures/dark_wooden_planks_1k.blend/textures/dark_wooden_planks_disp_1k.png" id="2_7tsnb"]
+[ext_resource type="Texture2D" uid="uid://c3k4qdwdigdmp" path="res://Assets/Textures/dark_wooden_planks_1k.blend/textures/dark_wooden_planks_nor_1k.png" id="3_upnu8"]
+[ext_resource type="Texture2D" uid="uid://cihrndle5gsar" path="res://Assets/Textures/dark_wooden_planks_1k.blend/textures/dark_wooden_planks_rough_1k.exr" id="4_fu6ai"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xnjc8"]
+albedo_texture = ExtResource("1_34cvx")
+roughness_texture = ExtResource("4_fu6ai")
+normal_enabled = true
+normal_texture = ExtResource("3_upnu8")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_7tsnb")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_j2jd6"]
+material = SubResource("StandardMaterial3D_xnjc8")
+size = Vector2(21, 10)
+orientation = 2
+
+[node name="Background" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_j2jd6")
